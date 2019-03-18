@@ -1,0 +1,231 @@
+
+<%- include('./common/All_top.ejs') %>
+
+<style>
+  .grid-margin{margin: 15px auto;}
+  div[class^=template] button{margin: 0 auto;}
+</style>
+<div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">完善你的资料~~</h4>
+            <form class="form-sample" enctype="multipart/form-data">
+              <p class="card-description">
+                个人信息
+              </p>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">昵称</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="nickname" value="<%= userInfo.nickname %>">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">电话</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="tel" value="<%= userInfo.tel %>">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">性别</label>
+                    <div class="col-sm-9">
+                      <select class="form-control" id="gender">
+                        <option value="1" <%= (userInfo.gender ==1)?'selected':'' %> >小帅哥</option>
+                        <option value="2" <%= (userInfo.gender ==2)?'selected':'' %> >萌妹子</option>
+                        <option value="3" <%= (userInfo.gender ==3)?'selected':'' %> >大叔</option>
+                        <option value="4" <%= (userInfo.gender ==4)?'selected':'' %> > 女汉子</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">生日</label>
+                    <div class="col-sm-9">
+                      <input class="form-control" placeholder="dd/mm/yyyy" id="birth" value="<%= userInfo.birth%>">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">等级</label>
+                    <div class="col-sm-9">
+                      <select class="form-control" id="level">
+                        <option value="1" <%= (userInfo.level ==1)?'selected':'' %> >LV.1</option>
+                        <option value="2" <%= (userInfo.level ==2)?'selected':'' %> >LV.2</option>
+                        <option value="3" <%= (userInfo.level ==3)?'selected':'' %> >LV.3</option>
+                        <option value="4" <%= (userInfo.level ==4)?'selected':'' %> >LV.4</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">恋爱</label>
+                    <div class="col-sm-3">
+                      <div class="form-radio">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="loving" id="loving1" value="1" <%= (userInfo.loving ==1)?'checked':'' %>> ing
+                        <i class="input-helper"></i></label>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-radio">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="loving" id="loving2" value="2" <%= (userInfo.loving ==2)?'checked':'' %>> wait
+                        <i class="input-helper"></i></label>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-radio">
+                          <label class="form-check-label">
+                            <input type="radio" class="form-check-input" name="loving" id="loving3" value="0" <%= (userInfo.loving ==0)?'checked':'' %> > secret
+                          <i class="input-helper"></i></label>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">邮箱</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="email" disabled value="<%= userInfo.email %>">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">上传头像</label>
+                    <div class="col-sm-9">
+                        <button type="button" id="layer" class="btn col-sm-6 btn-outline-secondary btn-rounded btn-fw">更换头像</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Address 2</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Postcode</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="template-demo">
+                  <button type="button" id="save" class="btn btn-info btn-block col-md-4">保存</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <script src="http://hao.91nzh.com/static/js/jquery3.2.1.min.js"></script>
+      <script>
+          function check_nickname(name){
+            if( name != ''){
+              if(!/^[a-zA-Z0-9\u4e00-\u9fa5]{1,16}$/.test(name)){
+                layer.msg('昵称格式不对~',{time:2000,icon:2});
+                return false;
+              }
+            }else{
+              layer.msg('昵称不能为空哦~',{time:2000,icon:2});
+              return false;
+            }
+            return true;
+          }
+          function check_tel(tel){
+            if(!/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$|17[0-9]{1}[0-9]{8}$/.test(tel)){
+              layer.msg('手机号格式不对~',{time:2000,icon:2});
+                return false;
+            }
+            return true;
+          }
+
+          $('#save').click(function(){
+            var nickname = $('#nickname').val();
+            var tel      = $('#tel').val();
+            var gender   = $('#gender').val();
+            var birth    = $('#birth').val();
+            var level    = $('#level').val();
+            var email    = $('#email').val();
+            var loving   = $('input[name="loving"]:checked').val();
+            var pic      = $('#pic').val();
+            console.log(pic);
+            // return;
+
+            if (!check_nickname(nickname)){
+              return false;
+            }
+            if(tel !== ''){
+              if(!check_tel(tel)){
+                return false;
+              }
+            }
+            // console.log('guole')
+            // return;
+            $.ajax({
+              type: 'post',
+              url: '/myAccount/changeInfo',
+              data: {
+                nickname: nickname,
+                tel: tel,
+                gender: gender,
+                birth: birth,
+                level: level,
+                email: email,
+                loving: loving,
+                pic: pic,
+              },
+              success: function(message){
+                if(message.ok == 1){
+                  layer.msg('保存成功',{time:2000,icon:1});
+                  setTimeout(()=>{
+                    window.location.reload();
+                  },2000);
+                  return false;
+                }
+                if(message.ok == 0){
+                  layer.msg('网络失败',{time:2000,icon:2});
+                  return false;
+                }
+              }
+            })
+          })
+
+          $('#layer').click(function(){
+              layer.open({
+              type: 2,
+              title: false,
+              closeBtn: 1,
+              area: ['800px', '500px'],
+              shadeClose: true,
+              skin: 'layui-layer-rim', //加上边框
+              content: "http://localhost:3000/picForm"
+            });
+          })
+
+      </script>
+
+
+<%- include('./common/All_bottom.ejs') %>

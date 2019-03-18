@@ -1,0 +1,78 @@
+<%- include('./common/All_top.ejs') %>
+
+<style>
+    .stretch-card{margin: 30px auto;}
+</style>
+
+        <div class="row">
+            <div class="col-md-10 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                        <h4 class="card-title">更新动态</h4>
+                        <form class="forms-sample" action="release/success" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                            <label>File upload</label>
+                            <input type="file" name="picture" id="picture" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
+                                <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-info" type="button" >Upload</button>
+                                </span>
+                            </div>
+                            </div>
+                            <style>
+                                div.my_uploads{text-align: center;margin: 0;display: none;}
+                                div.my_uploads img{height: 200px;width: 350px;}
+                                textarea.form-control{letter-spacing: 1px;line-height: 20px; font-family: "叶根友毛笔行书2.0版";font-size: 16px;font-weight: 700;}
+                            </style>
+                            <div class="form-group my_uploads">
+                                <img src="" alt="" id="upload_pic">
+                            </div>
+                            <div class="form-group">
+                            <label for="exampleTextarea1">每天好心情~~</label>
+                            <span style="float:right; font-size: 12px;">还可以输入<i id="limit_font" style="font-style:normal;font-weight:bold;"> 300 </i>字</span>
+                            <textarea class="form-control" id="exampleTextarea1" name="content" rows="8"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success mr-2">发表</button>
+                        </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+        <script>
+            $('.file-upload-browse').click(function(){
+                console.log('q')
+                $("#picture").trigger("click");
+            })
+            $("#picture").change(function(){
+               console.log('aa')
+               var reads = new FileReader();
+                var v =  $(this)[0].files[0];
+                console.log(v)
+                reads.readAsDataURL(v);
+                reads.onload = function(e){
+                document.getElementById('upload_pic').src = this.result;
+                $('#upload_pic').parents('div').slideDown(200);
+                };
+            })
+            
+            $('#exampleTextarea1').keyup(function(){   //()箭头函数这个绑定时间没有自己的this
+                console.log($('#limit_font').html())
+                console.log($(this).val().length);
+                var final = 300 - $(this).val().length;
+                if(final<0){
+                    $('#limit_font').css({color: 'red'})
+                }else{
+                    $('#limit_font').css({color: '#495057'})
+                }
+                $('#limit_font').html(final);
+            })
+
+
+                
+        </script>
+
+
+
+<%- include('./common/All_bottom.ejs') %>

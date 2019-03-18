@@ -1,0 +1,70 @@
+
+<%- include('./common/All_top.ejs') %>
+
+<style>
+    div.align-items-stretch{margin: auto;}
+    div.collect_top{overflow: hidden;margin-right: 30px;display: flex;justify-content: space-between;}
+    div.row{width: 100%}
+    div.row a.none{text-decoration: none;color: #333;font-size: 15px;font-weight: 500;letter-spacing: 1px;}
+    div.left_img{height: 110px;}
+    div.left_img img{height: 100px;}
+    div.collect_top p.content{padding:5px 0px 5px 10px;height: 100px;margin: 0;text-overflow:ellipsis;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;line-height: 23px;font-size: 14px;overflow: hidden;width: 100%;}
+    p.about{margin: 0; font-size: 12px;color: #cccccc;height: 20px;}
+    div.card-body{position: relative;}
+    div.card-body button{position: absolute;bottom: 30px;right: 60px;height: 20px;
+    font-size: 12px;
+    line-height: 1px;}
+</style>
+<% for(var i = data.length-1; i>-1; i--) {%>
+<div class="col-md-10 d-flex align-items-stretch">
+        <div class="row">
+          <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                <a class="none" href="collect_detail?id=<%= data[i]._id %>">
+                    <div class="collect_top">
+                        <div class="left_img">
+                            <img src="<%= data[i].picture %>" alt="">
+                        </div>
+                        <p class="content"><%= data[i].content %></p>
+                    </div>
+                </a>
+                <p class="about"><span>收藏于:&nbsp;</span><span><%= formatMsgTime(data[i].collect_time) %></span></p>
+                <input type="hidden" value="<%= data[i].collect_id %>">
+                <button type="button" class="mycancel btn btn-outline-info btn-rounded btn-fw">取消收藏</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+</div>
+<% }%>
+
+<script>
+    $('.mycancel').click(function(){
+        console.log($(this).prev().val())
+        var collectId = $(this).prev().val();
+        layer.confirm('确定取消吗？',()=>{
+            $.post('collect/cancel',{collectId: collectId},function(message){
+                if(message.ok == 1){
+                    layer.msg('取消成功',{time:1000});
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                    return false;
+                }
+                if(message.ok == 0){
+                    layer.msg('网络错误',{time:1000});
+                    return false;
+                }
+                if(message.ok == 4){
+                    window.location.href = '/login';
+                    return false;
+                }
+            })
+        });
+
+    })
+</script>
+
+<%- include('./common/All_bottom.ejs') %>

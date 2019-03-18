@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>登录</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="../../vendors/css/vendor.bundle.addons.css">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../../css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
+      <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+        <div class="row w-100">
+          <div class="col-lg-4 mx-auto">
+            <div class="auto-form-wrapper">
+              <form onsubmit="return false">
+                <div class="form-group">
+                  <label class="label">Email / Tel</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="account" placeholder="Email / Tel">
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="mdi mdi-check-circle-outline"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="label">Password</label>
+                  <div class="input-group">
+                    <input type="password" class="form-control" id="password" placeholder="*********">
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="mdi mdi-check-circle-outline"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary submit-btn btn-block" id="login_btn">登录</button>
+                </div>
+                <div class="form-group d-flex justify-content-between">
+                  <div class="form-check form-check-flat mt-0">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" checked> 下次免登录
+                    </label>
+                  </div>
+                  <a href="#" class="text-small forgot-password text-black">忘记密码</a>
+                </div>
+                <!-- <div class="form-group">
+                  <button class="btn btn-block g-login">
+                    <img class="mr-3" src="../../images/file-icons/icon-google.svg" alt="">Log in with Google</button>
+                </div> -->
+                <div class="text-block text-center my-3">
+                  <span class="text-small font-weight-semibold">还没账号?</span>
+                  <a href="register" class="text-black text-small">创建新账户</a>
+                </div>
+              </form>
+            </div>
+            <ul class="auth-footer">
+              <li>
+                <a href="#">Conditions</a>
+              </li>
+              <li>
+                <a href="#">Help</a>
+              </li>
+              <li>
+                <a href="#">Terms</a>
+              </li>
+            </ul>
+            <p class="footer-text text-center">copyright © 2018 Bootstrapdash. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="../../vendors/js/vendor.bundle.base.js"></script>
+  <script src="../../vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- inject:js -->
+  <script src="../../js/off-canvas.js"></script>
+  <script src="../../js/misc.js"></script>
+  <!-- endinject -->
+  <script src="http://hao.91nzh.com/static/js/jquery3.2.1.min.js"></script>
+  <script src="../../js/layer/layer.js"></script>
+
+  <script>
+      $('#login_btn').on('click',()=>{
+        var checkbox = $('input[type="checkbox"]');
+        console.log(checkbox)
+        var symbol = 0; //代表未选中
+        if(checkbox.prop('checked')){
+          symbol = 1;
+          
+        }
+        console.log(symbol);
+        // return;
+        $.ajax({
+          type: 'post',
+          url: 'login/success',
+          data: {
+            symbol: symbol,
+            account: $('#account').val(),
+            password: $('#password').val()
+          },
+          success: function(res){
+            if(res.ok == 1){
+              layer.msg('登陆成功',{time:2000,icon:1});
+              setTimeout(()=>{
+                location.href = '/';
+              },2000)
+              return false;
+            }
+            if(res.ok == -1){
+              layer.msg('账号或密码错误',{time:2000,icon:2});
+              return false;
+            }
+            if(res.ok == 0){
+              layer.msg('网络失败',{time:2000,icon:2});
+              return false;
+            }
+          }
+        })
+      })
+  </script>
+
+</body>
+
+</html>
