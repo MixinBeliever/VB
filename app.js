@@ -13,6 +13,8 @@ var myAccountRouter = require('./routes/myAccount');
 var testRouter = require('./routes/test');
 var collectRouter = require('./routes/collect');
 var picFormRouter = require('./routes/picForm');
+var changepwdRouter = require('./routes/changepwd');
+var profileRouter = require('./routes/profile');
 
 
 
@@ -55,6 +57,8 @@ app.use('/myAccount',myAccountRouter);
 app.use('/test',testRouter);
 app.use('/collect',collectRouter);
 app.use('/picForm',picFormRouter);
+app.use('/changepwd',changepwdRouter);
+app.use('/profile',profileRouter);
 
 
 

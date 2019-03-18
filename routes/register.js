@@ -19,7 +19,8 @@ router.post('/success', function(req, res, next) {
             admin_users.create({
                 account: req.body.account,
                 password: req.body.password,
-                nickname: req.body.nickname
+                nickname: req.body.nickname,
+                add_time: Date.now(),
             }).then(result=>{
                 if(result) res.send({ok: 1}); //注册成功
             }).catch(err=>{

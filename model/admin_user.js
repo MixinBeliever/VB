@@ -9,10 +9,12 @@ var obj = {
     birth: String,
     level: Number,  
     email: String, 
+    motto: String,
     account: String,
     password: String,
     creat_time: Date,
     loving: Number,
+    add_time: Date,
 }
 
 var model = mongoose.model('admin_user',new Schema(obj));

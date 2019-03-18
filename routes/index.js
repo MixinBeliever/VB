@@ -59,6 +59,7 @@ router.get('/', function(req, res, next) {
     //return;
     //查询最新一次动态时间
     blogModel.find().sort({add_time: -1}).then(result=>{
+      if(result.length){
       var arr = [];
       var result_length = result.length;
       var final;
@@ -85,6 +86,9 @@ router.get('/', function(req, res, next) {
           res.render('index', { userInfo: userInfo, blogInfo: final, formatMsgTime: formatMsgTimeModel });
           }
       });  
+    }else{
+      res.render('index', { userInfo: userInfo,blogInfo: [],});
+    }
     }).catch(err=>{
       console.log(err)
     })

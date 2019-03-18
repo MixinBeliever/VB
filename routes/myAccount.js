@@ -44,6 +44,7 @@ router.post('/changeInfo', function(req, res, next) {
         level: req.body.level,  
         email: req.body.email, 
         loving: req.body.loving,
+        motto: req.body.motto,
       }}).then(result=>{
         if(result){
           console.log('保存成功')

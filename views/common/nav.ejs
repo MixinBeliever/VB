@@ -137,17 +137,21 @@
             <li class="nav-item dropdown d-none d-xl-inline-block">
               <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <span class="profile-text">欢迎回来 , <%= userInfo.nickname %> !</span>
-                <img class="img-xs rounded-circle" src="<%= userInfo.pic %>" alt="Profile image">
+                <img class="img-xs rounded-circle" src="<%= userInfo.pic?userInfo.pic:'/uploads/default_pic.png' %>" alt="">
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                <a class="dropdown-item p-0">
+                <a href="" class="dropdown-item p-0">
                   <div class="d-flex border-bottom">
                     <div class="py-3 px-4 d-flex align-items-center justify-content-center">
                       <i class="mdi mdi-bookmark-plus-outline mr-0 text-gray"></i>
                     </div>
+                </a>    
+                <a href="profile" class="dropdown-item p-0" title="个人中心">
                     <div class="py-3 px-4 d-flex align-items-center justify-content-center border-left border-right">
                       <i class="mdi mdi-account-outline mr-0 text-gray"></i>
                     </div>
+                </a>  
+                <a class="dropdown-item p-0">  
                     <div class="py-3 px-4 d-flex align-items-center justify-content-center">
                       <i class="mdi mdi-alarm-check mr-0 text-gray"></i>
                     </div>
@@ -156,7 +160,7 @@
                 <a href="myAccount" class="dropdown-item mt-2">
                   管理账户
                 </a>
-                <a href="javascript:;" class="dropdown-item">
+                <a href="changepwd" class="dropdown-item">
                   修改密码
                 </a>
                 <a href="javascript:;" class="dropdown-item">

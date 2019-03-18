@@ -27,6 +27,10 @@
                             p.text-dark{letter-spacing: 1px;}
                             i.myi{margin: 0 2px 0 5px;}
                         </style>
+                      <% if(blogInfo.length == 0) {%>
+                        <div>暂无</div>
+                      <% } else{%>
+
                       <% for(var i = 0; i<blogInfo.length; i++ ) {%>
 
                       <div class="row ticket-card mt-3 pb-2 border-bottom pb-3 mb-3">
@@ -79,7 +83,7 @@
                         </div>
                       </div>
                     
-                      <% }%>  
+                      <% } }%>  
                     </div>
                   </div>
                 </div>

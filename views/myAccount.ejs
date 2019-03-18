@@ -125,9 +125,9 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Postcode</label>
+                    <label class="col-sm-3 col-form-label">个性签名</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control">
+                      <input type="text" class="form-control" id="motto" value="<%= userInfo.motto %>">
                     </div>
                   </div>
                 </div>
@@ -171,6 +171,7 @@
             var email    = $('#email').val();
             var loving   = $('input[name="loving"]:checked').val();
             var pic      = $('#pic').val();
+            var motto      = $('#motto').val();
             console.log(pic);
             // return;
 
@@ -196,6 +197,7 @@
                 email: email,
                 loving: loving,
                 pic: pic,
+                motto: motto,
               },
               success: function(message){
                 if(message.ok == 1){

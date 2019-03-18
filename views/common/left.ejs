@@ -4,7 +4,7 @@
             <div class="nav-link">
               <div class="user-wrapper">
                 <div class="profile-image">
-                  <img src="<%= userInfo.pic %>" alt="profile image">
+                  <img src="<%= userInfo.pic?userInfo.pic:'/uploads/default_pic.png' %>" alt="">
                 </div>
                 <div class="text-wrapper">
                   <p class="profile-name"><%= userInfo.nickname %></p>
